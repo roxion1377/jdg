@@ -1,0 +1,24 @@
+<table class="s8">
+  <thead>
+    <tr>
+      <th class="s1">#</th>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody id="tasks">
+  </tbody>
+</table>
+
+<script>
+id = <%= @id %>;
+function update() {
+  tasks = getTasks(id);
+  for( var i in tasks ) {
+    task = tasks[i];
+    $('#tasks').append('<tr><td class="s2">'+task.serial+'</td><td><a href="/judge/'+id+'/t/'+task.serial+'">'+task.name+'</td></tr>');
+  }
+}
+$('document').ready(function(){
+  update();
+});
+</script>

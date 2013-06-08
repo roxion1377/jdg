@@ -1,0 +1,58 @@
+.pln{color:gray}
+@media screen{
+ .str{color:#080}
+ .kwd{color:#008}
+ .com{color:#800}
+ .typ{color:#606}
+ .lit{color:#066}
+ .pun,.opn,.clo{color:#660}
+ .tag{color:#008}
+ .atn{color:#606}
+ .atv{color:#080}
+ .dec,.var{color:#606}
+ .fun{color:red}
+}
+ 
+@media print,projection{
+ .str{color:#060}
+ .kwd{color:#006;font-weight:bold}
+ .com{color:#600;font-style:italic}
+ .typ{color:#404;font-weight:bold}
+ .lit{color:#044}.pun,.opn,.clo{color:#440}
+ .tag{color:#006;font-weight:bold}
+ .atn{color:#404}
+ .atv{color:#060}
+}
+ 
+.prettyprint {
+  padding: 0;
+  background-color: #f8f8f8;
+  border: 1px solid #e0e0e0;
+  
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  width: 95%;
+  margin: .8em; auto;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  overflow: auto
+}
+ 
+ol.linenums {
+ margin: 0;
+  -webkit-box-shadow: inset 40px 0 0 #fcfcfc, inset 41px 0 0 #ececec;
+     -moz-box-shadow: inset 40px 0 0 #fcfcfc, inset 41px 0 0 #ececec;
+          box-shadow: inset 40px 0 0 #fcfcfc, inset 41px 0 0 #ececec;
+}
+ 
+/* Specify class=linenums on a pre to get line numbering */
+
+ol.linenums li {
+  margin: 0 0 0 5px;
+  padding-left: 10px;
+  color: #b0b0b0;
+  line-height: 18px;
+  text-shadow: 0 1px 0 #fff;
+  list-style: decimal outside;
+}

@@ -1,0 +1,27 @@
+<h1>Listing contest_tasks</h1>
+
+<table>
+  <tr>
+    <th>Contest</th>
+    <th>Task</th>
+    <th>Serial</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @contest_tasks.each do |contest_task| %>
+  <tr>
+    <td><%= contest_task.contest_id %></td>
+    <td><%= contest_task.task_id %></td>
+    <td><%= contest_task.serial %></td>
+    <td><%= link_to 'Show', contest_task %></td>
+    <td><%= link_to 'Edit', edit_contest_task_path(contest_task) %></td>
+    <td><%= link_to 'Destroy', contest_task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Contest task', new_contest_task_path %>

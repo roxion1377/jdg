@@ -1,0 +1,78 @@
+<h1>Editing contest</h1>
+
+<%= render 'form' %>
+
+<hr />
+
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>remove</th>
+    </tr>
+  </thead>
+  <tbody id="tasks">
+  </tbody>
+</table>
+
+<hr />
+
+<p>
+  <b>Task</b>
+  <%= select "", "", @tasks.map{|t| [t.name, t.id]},{},{:id => 'tid'} %>
+</p>
+
+<p>
+  <b>Serial</b>
+  <input type="text" id="sl" />
+</p>
+
+<p>
+  <input type="button" class="mk" value="fuyasu" />
+</p>
+
+<p id="err">
+</p>
+
+<script>
+  function remove(id) {
+    removeTask(id);
+    update();
+  }
+  function append(contest_id,task_id,serial) {
+    ret = appendTask(contest_id,task_id,serial);
+//    $('#err').html('');
+//    $('#err').html('key:'+ret.error);
+    update();
+  }
+  function update() {
+    tasks = getTasks(<%= @contest.id %>);
+    $('#tasks').html('');
+    for( var i in tasks ) {
+      task = tasks[i];
+      id = task.id;
+      serial = task.serial;
+      name = task.name;
+      s = '<td>'+serial+'</td>';
+      a = '<td><a href="/judge/<%= @contest.id %>/'+serial+'">'+name+'</a></td>';
+      kesu = '<td><input class="rm" type="button" value="kesu" id="'+id+'" /></td>';
+      $('#tasks').append('<tr>'+s+a+kesu+'</tr>');
+    }
+  }
+  $(document).ready(function(){
+    update();
+  });
+  $(document).on('click',".mk",function(){
+    append(<%= @contest.id %>,$("#tid").val(),$("#sl").val());
+    $("#sl").val('');
+  });
+  $(document).on('click',".rm",function(){
+    remove($(this).attr('id'));
+  });
+</script>
+
+<hr />
+
+<%= link_to 'Show', @contest %> |
+<%= link_to 'Back', contests_path %>

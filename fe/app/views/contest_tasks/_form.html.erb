@@ -1,0 +1,29 @@
+<%= form_for(@contest_task) do |f| %>
+  <% if @contest_task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@contest_task.errors.count, "error") %> prohibited this contest_task from being saved:</h2>
+
+      <ul>
+      <% @contest_task.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :contest_id %><br />
+    <%= f.number_field :contest_id %>
+  </div>
+  <div class="field">
+    <%= f.label :task_id %><br />
+    <%= f.number_field :task_id %>
+  </div>
+  <div class="field">
+    <%= f.label :serial %><br />
+    <%= f.text_field :serial %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

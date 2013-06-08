@@ -1,0 +1,19 @@
+<h2 id="title"></h2>
+<span>TLE: <span id="tle"></span> | MLE: <span id="mle"></span> | JudgeType: <span id="jt"></span></span>
+<p id="body">
+</p>
+
+<a class="btn" href="/judge/<%= @id %>/submit?serial=<%= @serial %>">提出</a>
+
+<script>
+id = <%= @id %>;
+serial = "<%= @serial %>";
+$('document').ready(function(){
+	task = getTask(id,serial);
+	$('#title').html(serial+' : '+task.name);
+	$('#tle').html(task.tle+" s");
+	$('#mle').html(task.mle+" MB");
+	$('#body').html(task.body.replace(/\r?\n/g, "<br />"));
+	$('#jt').html(task.judge_type);
+});
+</script>

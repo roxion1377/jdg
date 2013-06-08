@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Memory:</b>
+  <%= @detail.memory %>
+</p>
+
+<p>
+  <b>Result:</b>
+  <%= @detail.result_id %>
+</p>
+
+<p>
+  <b>State:</b>
+  <%= @detail.state %>
+</p>
+
+<p>
+  <b>Time:</b>
+  <%= @detail.time %>
+</p>
+
+<p>
+  <b>Input:</b>
+  <%= @detail.input %>
+</p>
+
+<p>
+  <b>Output:</b>
+  <%= @detail.output %>
+</p>
+
+
+<%= link_to 'Edit', edit_detail_path(@detail) %> |
+<%= link_to 'Back', details_path %>

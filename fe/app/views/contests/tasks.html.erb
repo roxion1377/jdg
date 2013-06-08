@@ -1,0 +1,29 @@
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody id="tasks">
+  </tbody>
+</table>
+
+<script>
+  function update() {
+    tasks = getTasks(<%= @contest.id %>);
+    for( var i in tasks ) {
+      task = tasks[i];
+      $('#tasks').append('<tr><td>'+task.serial+'</td><td><a href="/contests/<%= @contest.id %>/task/'+task.serial+'">'+task.name+'</td></tr>');
+    }
+  }
+  function remove() {
+    update();
+  }
+  function append() {
+    update();
+  }
+  $(document).ready(function(){
+    update();
+  });
+</script>

@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Lang:</b>
+  <%= @result.lang_id %>
+</p>
+
+<p>
+  <b>Message:</b>
+  <%= @result.message %>
+</p>
+
+<p>
+  <b>State:</b>
+  <%= @result.state %>
+</p>
+
+<p>
+  <b>Contest task:</b>
+  <%= @result.contest_task_id %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @result.user_id %>
+</p>
+
+<p>
+  <b>Contest:</b>
+  <%= @result.contest_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_result_path(@result) %> |
+<%= link_to 'Back', results_path %>

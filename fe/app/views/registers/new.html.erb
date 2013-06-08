@@ -1,0 +1,36 @@
+<h1>touroku</h1>
+
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<%= form_tag register_path do %>
+<table id="register_form">
+  <tr>
+    <td><%= label_tag :name, 'name' %></td>
+    <td><%= text_field_tag :name, params[:name] %></td>
+  </tr>
+
+  <tr>
+    <td><%= label_tag :pass, 'pass' %></td>
+    <td><%= password_field_tag :pass, params[:pass] %></td>
+  </tr>
+
+  <tr>
+    <td><%= label_tag :pass, 'passc' %></td>
+    <td><%= password_field_tag :passc, params[:passc] %></td>
+  </tr>
+
+  <tr>
+    <td><%= submit_tag "register" %></td>
+  </tr>
+</table>
+<% end %>

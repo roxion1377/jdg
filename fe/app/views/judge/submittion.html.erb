@@ -1,0 +1,26 @@
+<table>
+  <thead>
+    <tr>
+      <th>提出時刻</th>
+      <th>問題</th>
+      <th>ユーザー名</th>
+      <th>言語</th>
+      <th>点数</th>
+      <th>結果</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="subm">
+  </tbody>
+</table>
+<script>
+id = <%= @id %>;
+serial = $.urlGet('serial');
+$('document').ready(function(){
+  ss = getSubmittion(id,$.urlGet('offset'));
+  for( var i in ss ) {
+    s = ss[i];
+    $('#subm').append('<tr><td>'+s.created_at+'</td><td><a href="/judge/'+id+'/t/'+s.serial+'">'+s.task_name+'</a></td><td>'+s.user_name+'</td><td>'+(s.lang_id==1?"C":"C++")+'</td><td>'+s.score+'</td><td>'+s.state_name+'</td><td><a href="/judge/'+id+'/detail/'+s.id+'">詳細</a></td></tr>');
+  }
+});
+</script>

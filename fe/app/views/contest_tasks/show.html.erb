@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Contest:</b>
+  <%= @contest_task.contest_id %>
+</p>
+
+<p>
+  <b>Task:</b>
+  <%= @contest_task.task_id %>
+</p>
+
+<p>
+  <b>Serial:</b>
+  <%= @contest_task.serial %>
+</p>
+
+<p>
+  <b>Key:</b>
+  <%= @contest_task.key %>
+</p>
+
+
+<%= link_to 'Edit', edit_contest_task_path(@contest_task) %> |
+<%= link_to 'Back', contest_tasks_path %>

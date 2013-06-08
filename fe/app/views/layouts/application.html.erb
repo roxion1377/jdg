@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= Contest.exists?(params[:id]) ? Contest.find(params[:id]).name : "Judge" %></title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+	<%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body onload="prettyPrint()">
+
+  <div class="row-fluid">
+    <div class="span9">
+      <%= yield %>
+    </div>
+    <div class="span3">
+      <ul class="mn">
+	<li class="i">link</li>
+        <li class="i"><a href="/judge">トップ</a></li>
+        <% id = params[:id] %>
+        <% if Contest.exists?(id) %>
+        <li class="i"><a href="/judge/<%= id %>">問題</a></li>
+        <li class="i"><a href="/judge/<%= id %>/submit">提出</a></li>
+        <li class="i"><a href="/judge/<%= id %>/submittion">提出状況</a></li>
+        <% end %>
+        <% if session[:user_id] %>
+        <li class="i"><a href="/logout">ログアウト</a></li>
+        <% else %>
+        <li class="i"><a href="/login">ログイン</a></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  
+</body>
+</html>

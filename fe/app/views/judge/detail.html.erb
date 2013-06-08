@@ -1,0 +1,68 @@
+<table>
+  <thead>
+    <th></th>
+    <th>info</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="s2">問題</td>
+      <td id="task"></td>
+    </tr>
+    <tr>
+      <td>ユーザー名</td>
+      <td id="user"></td>
+    </tr>
+    <tr>
+      <td>提出時間</td>
+      <td id="time"></td>
+    </tr>
+    <tr>
+      <td>言語</td>
+      <td id="lang"></td>
+    </tr>
+    <tr>
+      <td>結果</td>
+      <td id="result"></td>
+    </tr>
+    <tr>
+      <td>点数</td>
+      <td id="score"></td>
+    </tr>
+  </tbody>
+</table>
+
+<pre class="prettyprint linenums" id="code"><code></code></pre>
+<pre id="message"></pre>
+
+<table>
+  <thead>
+    <tr>
+      <th>テストケース</th>
+      <th>状態</th>
+      <th>実行時間</th>
+      <th>メモリ使用量</th>
+    </tr>
+  </thead>
+  <tbody id="details">
+  </tbody>
+</table>
+<script>
+id=<%= @id %>;
+result_id=<%= @result_id %>;
+$(document).ready(function(){
+  details = getDetails(result_id);
+  result = details.result;
+  $('#task').html('<a href="/judge/'+id+'/t/'+result.serial+'">'+result.task_name+'</a>');
+  $('#user').html(result.user_name);
+  $('#time').html(result.created_at);
+  $('#lang').html(result.lang_id==1?"C":"C++");
+  $('#result').html(result.state_name);
+  $('#score').html(result.score);
+  $('#code').html(htmlspc(details.code));
+  $('#message').html(htmlspc(result.message));
+  for( var i in details.details ) {
+    d = details.details[i];
+    $('#details').append(tag('tr',tag('tr',tag('td',d.input)+tag('td',d.state_name)+tag('td',d.time+' ms')+tag('td',d.memory+' KB'))));
+  }
+});
+</script>

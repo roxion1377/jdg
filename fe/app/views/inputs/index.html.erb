@@ -1,0 +1,27 @@
+<h1>Listing inputs</h1>
+
+<table>
+  <tr>
+    <th>Task</th>
+    <th>Name</th>
+    <th>Score</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @inputs.each do |input| %>
+  <tr>
+    <td><%= input.task_id %></td>
+    <td><%= input.name %></td>
+    <td><%= input.score %></td>
+    <td><%= link_to 'Show', input %></td>
+    <td><%= link_to 'Edit', edit_input_path(input) %></td>
+    <td><%= link_to 'Destroy', input, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Input', new_input_path %>

@@ -1,0 +1,2 @@
+module ContestTasksHelper
+end

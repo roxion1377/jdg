@@ -1,0 +1,314 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+body {
+    margin-left:20px;
+}
+
+.row-fluid {
+  width: 100%;
+  *zoom: 1;
+}
+
+.row-fluid:before,
+.row-fluid:after {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+
+.row-fluid:after {
+  clear: both;
+}
+
+.row-fluid [class*="span"] {
+  display: block;
+  float: left;
+  width: 100%;
+  min-height: 30px;
+  margin-left: 2.127659574468085%;
+  *margin-left: 2.074468085106383%;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.row-fluid [class*="span"]:first-child {
+  margin-left: 0;
+}
+
+.row-fluid .controls-row [class*="span"] + [class*="span"] {
+  margin-left: 2.127659574468085%;
+}
+
+.row-fluid .span12 {
+  width: 100%;
+  *width: 99.94680851063829%;
+}
+
+.row-fluid .span11 {
+  width: 91.48936170212765%;
+  *width: 91.43617021276594%;
+}
+
+.row-fluid .span10 {
+  width: 82.97872340425532%;
+  *width: 82.92553191489361%;
+}
+
+.row-fluid .span9 {
+  width: 74.46808510638297%;
+  *width: 74.41489361702126%;
+}
+
+.row-fluid .span8 {
+  width: 65.95744680851064%;
+  *width: 65.90425531914893%;
+}
+
+.row-fluid .span7 {
+  width: 57.44680851063829%;
+  *width: 57.39361702127659%;
+}
+
+.row-fluid .span6 {
+  width: 48.93617021276595%;
+  *width: 48.88297872340425%;
+}
+
+.row-fluid .span5 {
+  width: 40.42553191489362%;
+  *width: 40.37234042553192%;
+}
+
+.row-fluid .span4 {
+  width: 31.914893617021278%;
+  *width: 31.861702127659576%;
+}
+
+.row-fluid .span3 {
+  width: 23.404255319148934%;
+  *width: 23.351063829787233%;
+}
+
+.row-fluid .span2 {
+  width: 14.893617021276595%;
+  *width: 14.840425531914894%;
+}
+
+.row-fluid .span1 {
+  width: 6.382978723404255%;
+  *width: 6.329787234042553%;
+}
+table {
+    border: 1px solid #CCC;
+	  background-color: #ffffff;
+	  border-top:#ffffff 3px double;
+	  border-collapse: collapse;
+    font-size: 15px;
+	  color:#333333;
+    width: 100%;
+    margin-bottom: 10px;
+} 
+table thead {
+	  border-bottom: #dcdddd 1px solid;
+	  background-color: #efefef;
+	  text-align: left;
+	  padding: 10px;
+}
+table tbody {
+	  background-color: #fff;
+	  text-align: left;
+	  padding: 10px;
+	  vertical-align: top;
+}
+th,td{
+    border-bottom:solid 1px #CCC;
+    border-right:solid 1px #CCC;
+}
+tr:hover {
+    background-color:#EEE;
+}
+th {
+    padding: 10px;
+}
+td {
+    padding: 10px;
+}
+td.s1 {width: 10%;}
+td.s2 {width: 20%;}
+td.s3 {width: 30%;}
+td.s4 {width: 40%;}
+td.s5 {width: 50%;}
+td.s6 {width: 60%;}
+td.s7 {width: 70%;}
+td.s8 {width: 80%;}
+td.s9 {width: 90%;}
+td.s0 {width:100%;}
+a {
+    font-size: 18px;
+}
+h2 {
+    font-size: 32px;
+    border-left: solid 9px #CCC;
+    border-bottom: solid 2px #CCC;
+    padding-left:10px;
+    padding-bottom:6px;
+    margin-bottom:3px;
+}
+span {
+    color: #666;
+}
+
+.btn {
+    font-size:16px;
+    background-color: #CCC;
+    display:block;
+    width: 100px;
+    border:0 solid;
+    padding-left:20px;
+    padding-right:20px;
+    padding-top:10px;
+    padding-bottom:10px;
+    text-align:center;
+    text-decoration: none;
+}
+
+.btn:hover{
+    background-color: #CCC;
+    color: #333;
+    text-decoration: none;
+    cursor: pointer;
+}
+select{
+    width: 180px;
+    border:1px solid #777;
+    padding: 4px 10px;
+    color: #000;
+    cursor: pointer;
+    background: #FFF;
+	  border-radius: 4px;
+	  -webkit-border-radius: 4px;
+	  -moz-border-radius: 4px;
+    padding-right: 0;
+}
+option {
+    background: #FFF;
+}
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.clearfix:after {
+  clear: both;
+}
+.hide-text {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+.input-block-level {
+  display: block;
+  width: 100%;
+  min-height: 30px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+code,
+pre {
+  padding: 0 3px 2px;
+  font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
+  font-size: 12px;
+  color: #333333;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+code {
+  padding: 2px 4px;
+  color: #d14;
+  background-color: #f7f7f9;
+  border: 1px solid #e1e1e8;
+  white-space: nowrap;
+}
+pre {
+  display: block;
+  padding: 9.5px;
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 20px;
+  word-break: break-all;
+  word-wrap: break-word;
+  white-space: pre;
+  white-space: pre-wrap;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+pre.prettyprint {
+  margin-bottom: 20px;
+}
+pre code {
+  padding: 0;
+  color: inherit;
+  white-space: pre;
+  white-space: pre-wrap;
+  background-color: transparent;
+  border: 0;
+}
+.pre-scrollable {
+  max-height: 340px;
+  overflow-y: scroll;
+}
+ul.mn{
+    border: 1px solid #ccc;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -khtml-border-radius-topleft: 5px; 
+    -khtml-border-radius-topright: 5px; 
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    margin:0;
+    padding:0;
+    /*width:100%;*/
+}
+li.i:first-child{border:0;}
+li.i:first-child:hover{background-color:#fff;}
+li{
+/*  text-align:center;*/
+/*  margin-top:5px;
+  margin-bottom:5px;
+*/  
+}
+li.i{
+    text-align:center;
+    border-top: 1px solid #ccc;
+    list-style-type: none;
+    padding:5px;
+}
+li.i:hover{
+  background-color: #eee;
+}

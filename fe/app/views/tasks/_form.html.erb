@@ -1,0 +1,52 @@
+<%= form_for(@task,:html=>{:multipart=>true}) do |f| %>
+  <% if @task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+      <ul>
+      <% @task.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :tle %><br />
+    <%= f.number_field :tle %>
+  </div>
+  <div class="field">
+    <%= f.label :mle %><br />
+    <%= f.number_field :mle %>
+  </div>
+  <div class="field">
+    <%= f.label :body %><br />
+    <%= f.text_area :body %>
+  </div>
+  <div class="field">
+    <%= f.label :judge_type %><br />
+    <%= f.number_field :judge_type %>
+  </div>
+  <p>
+    scoreを空にすると消えます<br />
+    scoreが空じゃないなら上書きと追加
+  </p>
+  <% 5.times do |i| %>
+  <div class="field">
+    <%= label :task_data,"file#{i}" %><br />
+    <%= label :task_data,"nyuryoku" %>
+    <%= file_field :task_data, "in#{i}", :multiple => true %>
+    <%= label :task_data,"shuturyoku" %>
+    <%= file_field :task_data, "out#{i}", :multiple => true %>
+    <%= label :task_data,"tensu" %>
+    <input id="task_data_score<%= i %>" value="<%= @scores[i] %>" name="task_data[score<%= i %>]" type="number" />
+  </div>
+  <% end %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
