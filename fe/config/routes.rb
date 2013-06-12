@@ -12,6 +12,7 @@ Judge::Application.routes.draw do
   resources :contests
 
   match "/contest/:id/submit" => "contests#submit"
+  match "/contests/:id/ranking" => "contests#ranking"
 
   match "contest_tasks/:id/:serial" => "contest_tasks#task"
 
@@ -21,7 +22,7 @@ Judge::Application.routes.draw do
   match "/judge/:id/submit" => "judge#submit"
   match "/judge/:id/submittion" => "judge#submittion"
   match "/judge/:id/detail/:result_id" => "judge#detail"
-  match "/judge/:id/rank" => "judge#ranking"
+  match "/judge/:id/ranking" => "judge#ranking"
 
   resource :login
   resource :logout

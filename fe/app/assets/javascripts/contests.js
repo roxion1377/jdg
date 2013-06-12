@@ -38,3 +38,16 @@ function getSubmittion(id,offset)
 	  });
     return ret;
 }
+
+function getRanking(id)
+{
+	$.ajax({
+		type:"GET",
+		url:"/contests/"+id+"/ranking.json",
+		async:false,
+		success: function(data) {
+			ret = data;
+		}
+	});
+	return ret;
+}

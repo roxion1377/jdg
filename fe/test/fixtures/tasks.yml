@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  tle: 1
+  mle: 1
+  body: MyText
+  judge_type: 1
+
+two:
+  name: MyString
+  tle: 1
+  mle: 1
+  body: MyText
+  judge_type: 1

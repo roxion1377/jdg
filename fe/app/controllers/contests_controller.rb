@@ -1,4 +1,33 @@
+require 'thread'
+require 'drb/drb'
 class ContestsController < ApplicationController
+  # GET /contests/1/ranking.json
+  def ranking
+	@results = Result.select("contest_id,user_id").where(:contest_id=>params[:id]).uniq(:user_id)
+	us = Struct.new("Us",:user_id,:user_name,:score,:scores,:wrong_num,:last)
+	u = []
+	used = {}
+	@results.each { |a|
+		u << us.new(a.user_id,User.select("id,name").find(a.user_id).name,0,{},Result.select("contest_id,state_id").where(["contest_id=? and state_id>=4 and state_id<=7 and user_id=?",params[:id],a.user_id]).count,Result.select("contest_id,created_at").where(:user_id=>a.user_id).maximum(:created_at))
+	}
+	@cts = ContestTask.where(:contest_id=>params[:id]).order(:serial)
+	@cts.each { |a|
+		u.each { |v|
+			r = Result.where(:user_id=>v.user_id,:contest_task_id=>a.id,:contest_id=>params[:id]).uniq(:user_id).maximum(:score)
+			v.score += r || 0
+			v.scores[a.serial] = r || 0
+		}
+	}
+	render json: u.sort{|a,b|
+		if a.score != b.score
+			b.score <=> a.score
+		elsif a.wrong_num != b.wrong_num
+			a.wrong_num <=> b.wrong_num
+		else
+			a.last <=> b.last
+		end
+	}
+  end
   # GET /contests
   # GET /contests.json
   def index
@@ -91,7 +120,9 @@ class ContestsController < ApplicationController
         File.open("task_data/contests/#{contest_id}/#{dir}/Main."+ext,'w'){|f|
           f.write(params[:code])
         }
-        `ruby judge.rb #{res.id} > /dev/null &`
+	q = DRbObject.new_with_uri("druby://localhost:12345")
+	q.push(res.id)
+        #ruby judge.rb #{res.id} > /dev/null &`
         redirect_to "/judge/#{contest_id}/submittion"
       else
         render :text => "err"

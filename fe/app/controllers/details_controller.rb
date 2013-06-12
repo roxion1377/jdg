@@ -19,6 +19,7 @@ class DetailsController < ApplicationController
       .joins(:state)
       .joins(:contest_task => :task)
       .joins(:user)
+      .where(:user_id=>session[:user_id])
       .find(@result_id)
 
     @details = Detail

@@ -1,6 +1,6 @@
 class JudgeController < ApplicationController
   def ranking
-    @id = prams[:id]
+    @id = params[:id]
   end
   def tasks
     @id = params[:id]

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  memory: 1
+  result_id: 1
+  state: 1
+  time: 1
+  input: MyString
+  output: MyString
+
+two:
+  memory: 1
+  result_id: 1
+  state: 1
+  time: 1
+  input: MyString
+  output: MyString

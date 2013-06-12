@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  lang_id: 1
+  message: MyText
+  state: 1
+  contest_task_id: 1
+  user_id: 1
+  contest_id: 1
+
+two:
+  lang_id: 1
+  message: MyText
+  state: 1
+  contest_task_id: 1
+  user_id: 1
+  contest_id: 1

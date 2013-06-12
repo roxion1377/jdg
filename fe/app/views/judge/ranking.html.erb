@@ -1,0 +1,28 @@
+<table>
+  <thead id="hd">
+  </thead>
+  <tbody id="rk">
+  </tbody>
+</table>
+<script>
+id = <%= @id %>;
+$('document').ready(function(){
+	var t = '';
+	tasks = getTasks(id);
+	for( var i in tasks ) {
+		task = tasks[i];
+		t += tag('th',task.serial);
+	}
+	$('#hd').append(tag('tr',tag('th','順位')+tag('th','ユーザー')+t+tag('th','合計')));
+	r = getRanking(id);
+	for( var i in r ) {
+		s = r[i];
+		t = '';
+		for( var j in s.scores ) {
+			t += tag('td',s.scores[j]);
+		}
+		$('#rk').append(tag('tr',tag('td',parseInt(i)+1)+tag('td',s.user_name)+t+tag('td',s.score+'('+s.wrong_num+')')));
+	}
+});
+</script>
+
