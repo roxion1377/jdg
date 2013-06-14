@@ -122,7 +122,7 @@ class ContestsController < ApplicationController
         }
 	#q = DRbObject.new_with_uri("druby://localhost:12345")
 	#q.push(res.id)
-        ruby judge.rb #{res.id} > /dev/null &`
+        `ruby judge.rb #{res.id} > /dev/null &`
         redirect_to "/judge/#{contest_id}/submittion"
       else
         render :text => "err"
