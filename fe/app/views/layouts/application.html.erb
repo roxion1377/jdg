@@ -22,6 +22,7 @@
         <li class="i"><a href="/judge/<%= id %>">問題</a></li>
         <li class="i"><a href="/judge/<%= id %>/submit">提出</a></li>
         <li class="i"><a href="/judge/<%= id %>/submittion">提出状況</a></li>
+	<li class="i"><a href="/judge/<%= id %>/my">自分の提出</a></li>
 	<li class="i"><a href="/judge/<%= id %>/ranking">順位表</a></li>
         <% end %>
         <% if session[:user_id] %>
@@ -43,7 +44,7 @@
       </ul>
       <ul class="mn">
 	<li class="i">状態</li>
-        <li class="i"><%= t>=con.begin && t<=con.end ? "コンテストいずらんにんぐ":"終わった" %></li>
+        <li class="i"><%= t<con.begin ? "まだ始まってない" : t>con.end ? "終わった" : "コンテストいずらんにんぐ" %></li>
       </ul>
       <% end %>
       <% if !session[:user_id] %>

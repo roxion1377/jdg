@@ -33,6 +33,18 @@ class ResultsController < ApplicationController
     end
   end
 
+  def my
+    @result = Result
+      .select("Results.id,state_id,Results.contest_id,lang_id,contest_task_id,score,Results.created_at,state_name,Tasks.name as task_name,task_id,user_id,Users.name as user_name,serial")
+      .where(:contest_id=>params[:id])
+      .joins(:state)
+      .joins(:contest_task => :task)
+      .joins(:user)
+      .where(:user_id => session[:user_id])
+      .order("Results.id DESC")
+    render json: @result;
+  end
+
   # GET /results/new
   # GET /results/new.json
   def new

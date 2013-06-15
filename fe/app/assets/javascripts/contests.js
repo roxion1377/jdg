@@ -39,6 +39,21 @@ function getSubmittion(id,offset)
     return ret;
 }
 
+function getMySubmittion(id,offset)
+{
+          $.ajax({
+                    type:"GET",
+                    url:"/results/"+id+"/my.json",
+                    async:false,
+        data:{'offset':offset},
+                    success: function(data) {
+                              ret = data;
+                    }
+          });
+    return ret;
+}
+
+
 function getRanking(id)
 {
 	$.ajax({

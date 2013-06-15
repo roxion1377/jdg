@@ -32,6 +32,10 @@ class ContestTasksController < ApplicationController
   end
 
   def task
+    if contest_not_begin params[:id]
+      render :json => []
+      return
+    end
     @task = ContestTask.select("contest_id,task_id,serial,body,judge_type,mle,name,tle")
       .where(contest_id:params[:id],serial:params[:serial])
       .joins(:task).first

@@ -14,14 +14,18 @@ class DetailsController < ApplicationController
   # GET /details/1.json
   def show
     @result_id = params[:id]
+#    contest_id = Result.find(@result_id).contest_id
     @result = Result
       .select("Results.id,state_id,Results.contest_id,serial,contest_task_id,task_id,score,Tasks.name as task_name,lang_id,user_id,Users.name as user_name,Results.created_at,state_name,message")
       .joins(:state)
       .joins(:contest_task => :task)
       .joins(:user)
-      .where(:user_id=>session[:user_id])
       .find(@result_id)
-
+#contest_not_end ? .where(:user_id=>session[:user_id]) : .all
+    if !contest_end(@result.contest_id) && @result.user_id!=session[:user_id]
+      render json: {}
+      return
+    end
     @details = Detail
       .select("result_id,state_id,output,input,state_name,time,memory")
       .where(:result_id=>@result_id).joins(:state)

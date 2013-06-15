@@ -19,4 +19,17 @@ class ApplicationController < ActionController::Base
       false
     end
   end
+  def contest_not_begin(contest_id)
+    contest = Contest.find(contest_id)
+    t = Time.now
+    return true if t < contest.begin
+    false
+  end
+  def contest_end(contest_id)
+    contest = Contest.find(contest_id)
+    t = Time.now
+    return true if t > contest.end
+    false
+  end
+
 end

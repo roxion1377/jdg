@@ -14,6 +14,12 @@ class JudgeController < ApplicationController
   end
   def submittion
     @id = params[:id]
+    @my = ""
+  end
+  def my
+    @id = params[:id]
+    @my = "My"
+    render "submittion"
   end
   def detail
     @id = params[:id]
