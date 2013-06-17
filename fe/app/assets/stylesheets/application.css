@@ -158,13 +158,18 @@ td.s0 {width:100%;}
 a {
     font-size: 18px;
 }
-h2 {
+h1 {
     font-size: 32px;
     border-left: solid 9px #CCC;
     border-bottom: solid 2px #CCC;
     padding-left:10px;
     padding-bottom:6px;
     margin-bottom:3px;
+}
+h2 {
+    font-size: 18px;
+    padding-left: 10px;
+    background-color: #ccc;
 }
 span {
     color: #666;

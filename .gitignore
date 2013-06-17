@@ -5,7 +5,7 @@
 #   git config --global core.excludesfile ~/.gitignore_global
 
 *~
-
+*.pid
 /fe/db/*.sqlite3
 /fe/tmp/*
 /fe/log/*
