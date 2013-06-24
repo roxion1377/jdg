@@ -34,6 +34,21 @@
     <%= f.label :judge_type %><br />
     <%= f.number_field :judge_type, :value=>1 %>
   </div>
+  <p>
+    scoreを空にすると消えます<br />
+    scoreが空じゃないなら上書きと追加
+  </p>
+  <% 5.times do |i| %>
+  <div class="field">
+    <%= label :task_data,"file#{i}" %><br />
+    <%= label :task_data,"nyuryoku" %>
+    <%= file_field :task_data, "in#{i}", :multiple => true %>
+    <%= label :task_data,"shuturyoku" %>
+    <%= file_field :task_data, "out#{i}", :multiple => true %>
+    <%= label :task_data,"tensu" %>
+    <input id="task_data_score<%= i %>" value="<%= @scores[i] %>" name="task_data[score<%= i %>]" type="number" />
+  </div>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

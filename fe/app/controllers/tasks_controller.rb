@@ -47,13 +47,50 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
     @task = Task.new(params[:task])
-
+    id = @task.id
     respond_to do |format|
       if @task.save
         id = @task.id
         Dir::mkdir("task_data/#{id}") if !File.exist?("task_data/#{id}")
         format.html { redirect_to @task, notice: 'Task was successfully created.' }
         format.json { render json: @task, status: :created, location: @task }
+        5.times { |ii|
+          inputs = params[:task_data]["in#{ii}"]
+          outputs = params[:task_data]["out#{ii}"]
+          score = params[:task_data]["score#{ii}"]
+          dir = "task_data/#{id}"
+          if outputs && inputs
+            inputs.sort!{|a,b| a.original_filename<=>b.original_filename}
+            outputs.sort!{|a,b| a.original_filename<=>b.original_filename}
+            p "score#{score}"
+            Dir::mkdir("#{dir}/#{ii}") if !File.exist?("#{dir}/#{ii}")
+            Dir::mkdir("#{dir}/#{ii}/in") if !File.exist?("#{dir}/#{ii}/in")
+            Dir::mkdir("#{dir}/#{ii}/out") if !File.exist?("#{dir}/#{ii}/out")
+            outputs.length.times { |j|
+              i = inputs[j]
+              o = outputs[j]
+              File.open("#{dir}/#{ii}/in/#{i.original_filename}", 'w') do |f|
+                f.write(i.read)
+              end
+              File.open("#{dir}/#{ii}/out/#{o.original_filename}", 'w') do |f|
+                f.write(o.read)
+              end
+            }
+            input = (Input.exists?(:task_id=>id,:name=>ii.to_s))?(Input.where(:task_id=>id,:name=>ii.to_s).first):(Input.new)
+            input.score = score
+            input.task_id = id
+            input.name = ii.to_s
+            input.save
+          elsif score.to_s.length==0
+            system("rm -r #{dir}/#{ii}")
+            Input.where(:task_id=>id,:name=>ii.to_s).first.destroy if Input.exists?(:task_id=>id,:name=>ii.to_s)
+          elsif score.to_s.length>0
+            input = (Input.exists?(:task_id=>id,:name=>ii.to_s))?(Input.where(:task_id=>id,:name=>ii.to_s).first):(Input.new)
+            input.score = score
+            input.save
+          end
+        }
+
       else
         format.html { render action: "new" }
         format.json { render json: @task.errors, status: :unprocessable_entity }
