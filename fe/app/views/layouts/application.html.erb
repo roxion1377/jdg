@@ -10,9 +10,6 @@
 <body onload="prettyPrint()">
 
   <div class="row-fluid">
-    <div class="span9">
-      <%= yield %>
-    </div>
     <div class="span3">
       <ul class="mn">
 	<li class="i">link</li>
@@ -50,6 +47,9 @@
       <% if !session[:user_id] %>
       <p class="err">ログインしないとほとんどの機能が使えません</p>
       <% end %>
+    </div>
+    <div class="span9">
+      <%= yield %>
     </div>
   </div>
   

@@ -298,6 +298,7 @@ ul.mn{
     border-top-right-radius: 5px;
     margin:0;
     padding:0;
+    margin-bottom:14px;
     /*width:100%;*/
 }
 li.i:first-child{border:0;}
