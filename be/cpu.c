@@ -53,7 +53,7 @@ int main(int argc, char** argv)
   else
   {
     if( argc <= 4 ) {
-      fprintf(stderr,"./cpu exe TLE MLE result");
+      fprintf(stderr,"./cpu exe TLE MLE result\n");
       return 0;
     }
     sscanf(argv[2],"%d",&tle);
