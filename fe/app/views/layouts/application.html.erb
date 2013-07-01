@@ -2,6 +2,7 @@
 <html>
 <head>
   <title><%= Contest.exists?(params[:id]) ? Contest.find(params[:id]).name : "Judge" %></title>
+  <%= stylesheet_link_tag    "prettify" %>
   <%= stylesheet_link_tag    "bootstrap" %>
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>

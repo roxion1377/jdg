@@ -31,7 +31,7 @@
   </tbody>
 </table>
 
-<pre class="prettyprint linenums" id="code"><code></code></pre>
+<pre class="prettyprint linenums" id="code"><code id="code"></code></pre>
 <pre id="message"></pre>
 
 <table class="table">
@@ -59,7 +59,7 @@ $(document).ready(function(){
   $('#result').html(result.state_name);
   $('#score').html(result.score);
   $('#code').html(htmlspc(details.code));
-  $('#message').html(htmlspc(result.message));
+  if( result.message ) $('#message').html(htmlspc(result.message));
   for( var i in details.details ) {
     d = details.details[i];
     $('#details').append(tag('tr',tag('tr',tag('td',d.input)+tag('td',d.state_name)+tag('td',d.time+' ms')+tag('td',d.memory+' KB'))));
