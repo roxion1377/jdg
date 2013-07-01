@@ -16,7 +16,7 @@ $(document).ready(function(){
 	contests = getContests();
 	for( var i in contests ) {
 		var con = contests[i];
-		var edit = "<td>"+"<a href=\"/contests/"+con.id+"/edit\">編集</a></td>";
+		var edit = "";
 		$('#contests').append("<tr><td><a href=\"/judge/"+con.id+"\">"+con.name+"</a></td><td>"+con.begin+"</td><td>"+con.end+"</td>"+edit+"</tr>")
 	}
 });
