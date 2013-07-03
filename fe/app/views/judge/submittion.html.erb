@@ -20,7 +20,22 @@ $('document').ready(function(){
   ss = get<%= @my %>Submittion(id,$.urlGet('offset'));
   for( var i in ss ) {
     s = ss[i];
-    $('#subm').append('<tr><td>'+s.created_at+'</td><td><a href="/judge/'+id+'/t/'+s.serial+'">'+s.task_name+'</a></td><td>'+s.user_name+'</td><td>'+(s.lang_id==1?"C":"C++")+'</td><td>'+s.score+'</td><td>'+s.state_name+'</td><td><a href="/judge/'+id+'/detail/'+s.id+'">詳細</a></td></tr>');
+	cls = "";
+	switch(s.state_id) {
+	case 1:
+	case 3:
+	case 9:
+		break;
+	case 2:
+		cls="ce";
+		break;
+	case 8:
+		cls="acc";
+		break;
+	default:
+		cls="wa";
+	}
+    $('#subm').append('<tr><td>'+s.created_at+'</td><td><a href="/judge/'+id+'/t/'+s.serial+'">'+s.task_name+'</a></td><td>'+s.user_name+'</td><td>'+(s.lang_id==1?"C":"C++")+'</td><td>'+s.score+'</td><td class="'+cls+'">'+s.state_name+'</td><td><a href="/judge/'+id+'/detail/'+s.id+'">詳細</a></td></tr>');
   }
 });
 </script>

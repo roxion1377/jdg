@@ -1,5 +1,19 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
+function getTasks(contest_id)
+{
+    $.ajax({
+        type: "GET", 
+        url: "/contest_tasks.json",
+        data: {'contest_id':contest_id},
+        async: false,
+        success: function(data){
+            ret = data;
+        }
+    });
+    return ret;
+}
+
 function getTask(contest_id,serial)
 {
 	$.ajax({

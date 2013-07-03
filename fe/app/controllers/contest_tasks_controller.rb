@@ -3,7 +3,7 @@ class ContestTasksController < ApplicationController
   # GET /contest_tasks.json
   def index
     @contest_tasks = ContestTask
-      .select("Contest_tasks.id,contest_id,task_id,serial,name")
+      .select("Contest_tasks.id,contest_id,task_id,serial,name,tle,mle")
       .where(contest_id:params[:contest_id])
       .joins(:task)
       .order("serial")

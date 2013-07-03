@@ -3,6 +3,8 @@
     <tr>
       <th>#</th>
       <th>Name</th>
+	  <th>TLE</th>
+	  <th>MLE</th>
     </tr>
   </thead>
   <tbody id="tasks">
@@ -15,7 +17,7 @@ function update() {
   tasks = getTasks(id);
   for( var i in tasks ) {
     task = tasks[i];
-    $('#tasks').append('<tr><td class="s2">'+task.serial+'</td><td><a href="/judge/'+id+'/t/'+task.serial+'">'+task.name+'</td></tr>');
+    $('#tasks').append(tag('tr',tag('td',task.serial)+tag('td','<a href="/judge/'+id+'/t/'+task.serial+'">'+task.name+'</a>')+tag('td',task.tle+' s')+tag('td',task.mle+' MB')));
   }
 }
 $('document').ready(function(){

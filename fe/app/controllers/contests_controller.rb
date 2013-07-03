@@ -4,18 +4,21 @@ class ContestsController < ApplicationController
   # GET /contests/1/ranking.json
   def ranking
 	@results = Result.select("contest_id,user_id").where(:contest_id=>params[:id]).uniq(:user_id)
-	us = Struct.new("Us",:user_id,:user_name,:score,:scores,:wrong_num,:last)
+	us = Struct.new("Us",:user_id,:user_name,:score,:scores,:state,:wa,:wrong_num,:last)
 	u = []
 	used = {}
 	@results.each { |a|
-		u << us.new(a.user_id,User.select("id,name").find(a.user_id).name,0,{},Result.select("contest_id,state_id").where(["contest_id=? and state_id>=4 and state_id<=7 and user_id=?",params[:id],a.user_id]).count,Result.select("contest_id,created_at").where(:user_id=>a.user_id).maximum(:created_at))
+		u << us.new(a.user_id,User.select("id,name").find(a.user_id).name,0,{},{},{},Result.select("contest_id,state_id").where(["contest_id=? and state_id>=4 and state_id<=7 and user_id=?",params[:id],a.user_id]).count,Result.select("contest_id,created_at").where(:user_id=>a.user_id).maximum(:created_at))
 	}
 	@cts = ContestTask.where(:contest_id=>params[:id]).order(:serial)
 	@cts.each { |a|
 		u.each { |v|
-			r = Result.where(:user_id=>v.user_id,:contest_task_id=>a.id,:contest_id=>params[:id]).uniq(:user_id).maximum(:score)
-			v.score += r || 0
-			v.scores[a.serial] = r || 0
+			r = Result.where(:user_id=>v.user_id,:contest_task_id=>a.id,:contest_id=>params[:id]).uniq(:user_id).order(:score).reverse_order.first
+			ms = r ? r.score : 0
+			v.score += ms
+			v.scores[a.serial] = ms
+			v.state[a.serial] = r ? (r.state_id == 8 ? 1 : 2) : 0
+			v.wa[a.serial] = r ? Result.select("contest_id,state_id").where(["contest_id=? and state_id>=4 and state_id<=7 and user_id=? and contest_task_id=?",params[:id],v.user_id,a.id]).count : 0
 		}
 	}
 	render json: u.sort{|a,b|

@@ -1,4 +1,4 @@
-<table class="table">
+<table class="table table-bordered">
   <thead id="hd">
   </thead>
   <tbody id="rk">
@@ -19,7 +19,11 @@ $('document').ready(function(){
 		s = r[i];
 		t = '';
 		for( var j in s.scores ) {
-			t += tag('td',s.scores[j]);
+			if( s.state[j] == 0 ) {
+				t += tag('td',s.wa[j] + '-' + s.scores[j]);
+			} else {
+				t += cTag('td',s.wa[j] + '-' + s.scores[j],s.state[j] == 1 ? "acc" : "wa");
+			}
 		}
 		$('#rk').append(tag('tr',tag('td',parseInt(i)+1)+tag('td',s.user_name)+t+tag('td',s.score+'('+s.wrong_num+')')));
 	}

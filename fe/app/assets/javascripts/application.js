@@ -17,6 +17,10 @@ function tag(t,s)
 {
   return '<'+t+'>'+s+'</'+t+'>';
 }
+function cTag(t,s,c)
+{
+  return '<'+t+' class="'+c+'">'+s+'</'+t+'>';
+}
 function htmlspc(ch) { 
     ch = ch.replace(/&/g,"&amp;") ;
     ch = ch.replace(/"/g,"&quot;") ;

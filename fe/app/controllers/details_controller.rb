@@ -29,7 +29,9 @@ class DetailsController < ApplicationController
     @details = Detail
       .select("result_id,state_id,output,input,state_name,time,memory")
       .where(:result_id=>@result_id).joins(:state)
-    @code = File.open("task_data/contests/#{@result.contest_id}/#{@result.id}_#{@result.user_id}_#{@result.contest_task_id}/Main."+(@result.lang_id==1?"c":"cpp")).read
+    @code = ""
+    @code = File.open("task_data/contests/#{@result.contest_id}/#{@result.id}_#{@result.user_id}_#{@result.contest_task_id}/Main."+(@result.lang_id==1 ? "c":"cpp")).read
+
 #    @detail = Detail.find(params[:id])
 
     respond_to do |format|

@@ -28,8 +28,8 @@ class ApplicationController < ActionController::Base
   def contest_end(contest_id)
     contest = Contest.find(contest_id)
     t = Time.now
-    return true if t > contest.end
-    false
+	puts "hoaaaaaaaaaaa #{t}"
+    return t > contest.end ? true : false
   end
 
 end

@@ -62,7 +62,22 @@ $(document).ready(function(){
   if( result.message ) $('#message').html(htmlspc(result.message));
   for( var i in details.details ) {
     d = details.details[i];
-    $('#details').append(tag('tr',tag('tr',tag('td',d.input)+tag('td',d.state_name)+tag('td',d.time+' ms')+tag('td',d.memory+' KB'))));
+    cls = "";
+    switch(d.state_id) {
+    case 1:
+    case 3:
+    case 9:
+      break;
+    case 2:
+      cls="ce";
+      break;
+    case 8:
+      cls="acc";
+      break;
+    default:
+      cls="wa";
+    }
+    $('#details').append(tag('tr',tag('tr',tag('td',d.input)+cTag('td',d.state_name,cls)+tag('td',d.time+' ms')+tag('td',d.memory+' KB'))));
   }
 });
 </script>
