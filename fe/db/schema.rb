@@ -9,79 +9,79 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130527130944) do
+ActiveRecord::Schema.define(version: 20130527130944) do
 
-  create_table "contest_tasks", :force => true do |t|
+  create_table "contest_tasks", force: true do |t|
     t.integer  "contest_id"
     t.integer  "task_id"
     t.string   "serial"
     t.string   "key"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  create_table "contests", :force => true do |t|
+  create_table "contests", force: true do |t|
     t.string   "name"
     t.datetime "begin"
     t.datetime "end"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  create_table "details", :force => true do |t|
+  create_table "details", force: true do |t|
     t.integer  "memory"
     t.integer  "result_id"
     t.integer  "state_id"
     t.integer  "time"
     t.string   "input"
     t.string   "output"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  create_table "inputs", :force => true do |t|
+  create_table "inputs", force: true do |t|
     t.integer  "task_id"
     t.string   "name"
     t.integer  "score"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  create_table "results", :force => true do |t|
+  create_table "results", force: true do |t|
     t.integer  "lang_id"
     t.text     "message"
     t.integer  "state_id"
     t.integer  "contest_task_id"
     t.integer  "user_id"
     t.integer  "contest_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "score"
   end
 
-  create_table "states", :force => true do |t|
+  create_table "states", force: true do |t|
     t.string   "state_name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  create_table "tasks", :force => true do |t|
+  create_table "tasks", force: true do |t|
     t.string   "name"
     t.integer  "tle"
     t.integer  "mle"
     t.text     "body"
     t.integer  "judge_type"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  create_table "users", :force => true do |t|
+  create_table "users", force: true do |t|
     t.string   "name"
     t.string   "password_digest"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

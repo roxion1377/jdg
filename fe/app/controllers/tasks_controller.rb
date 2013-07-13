@@ -7,6 +7,7 @@ class TasksController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @tasks }
+#      format.xml  { render xml:  @tasks }
     end
   end
 

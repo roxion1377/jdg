@@ -21,7 +21,8 @@ class ContestsController < ApplicationController
 			v.wa[a.serial] = r ? Result.select("contest_id,state_id").where(["contest_id=? and state_id>=4 and state_id<=7 and user_id=? and contest_task_id=?",params[:id],v.user_id,a.id]).count : 0
 		}
 	}
-	render json: u.sort{|a,b|
+	
+	u.sort!{|a,b|
 		if a.score != b.score
 			b.score <=> a.score
 		elsif a.wrong_num != b.wrong_num
@@ -30,6 +31,25 @@ class ContestsController < ApplicationController
 			a.last <=> b.last
 		end
 	}
+	respond_to do |format|
+		format.json { render json: u }
+		format.xml {
+			re = []
+			u.each {|k|
+				r = {}
+				r['user_id'] = k.user_id
+				r['user_name'] = k.user_name
+				r['score'] = k.score
+				r['scores'] = k.scores
+				r['state'] = k.state
+				r['wa'] = k.wa
+				r['wrong_num'] = k.wrong_num
+				r['last'] = k.last
+				re << r
+			}
+			render xml: re
+		}
+	end
   end
   # GET /contests
   # GET /contests.json

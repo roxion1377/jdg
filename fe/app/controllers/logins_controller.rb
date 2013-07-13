@@ -8,7 +8,7 @@ class LoginsController < ApplicationController
     user = User.find_by_name params[:name]
     if user && user.authenticate(params[:pass])
       session[:user_id] = user.id
-      session[:ver] = APP_VER
+      session[:ver] = Settings.version
       redirect_to "/judge"
     else
       flash.now.alert = "naidesu"

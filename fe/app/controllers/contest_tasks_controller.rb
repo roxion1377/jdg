@@ -11,6 +11,7 @@ class ContestTasksController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @contest_tasks }
+      format.xml  { render xml:  @contest_tasks }
     end
   end
 

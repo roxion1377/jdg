@@ -1,6 +1,12 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  APP_VER = 'ver 0.20'
+  def check_ver
+    if session[:user_id]
+      if session[:ver] != Settings.version
+        reset_session
+      end
+    end
+  end 
   def block_non_user
     if session[:user_id].blank?
       redirect_to '/login'
