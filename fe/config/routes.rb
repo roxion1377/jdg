@@ -11,25 +11,25 @@ Judge::Application.routes.draw do
 
   resources :contests
 
-  match "/results/:id/my.json" => "results#my"
+  get "/results/:id/my.json" => "results#my"
 
-  match "/contest/:id/submit" => "contests#submit"
-  match "/contests/:id/ranking" => "contests#ranking"
+  get "/contest/:id/submit" => "contests#submit"
+  get "/contests/:id/ranking" => "contests#ranking"
 
-  match "contest_tasks/:id/:serial" => "contest_tasks#task"
+  get "contest_tasks/:id/:serial" => "contest_tasks#task"
 
-  match "/judge" => "judge#index"
-  match "/judge/:id" => "judge#tasks"
-  match "/judge/:id/t/:serial" => "judge#task"
-  match "/judge/:id/submit" => "judge#submit"
-  match "/judge/:id/submittion" => "judge#submittion"
-  match "/judge/:id/my" => "judge#my"
-  match "/judge/:id/detail/:result_id" => "judge#detail"
-  match "/judge/:id/ranking" => "judge#ranking"
+  get "/judge" => "judge#index"
+  get "/judge/:id" => "judge#tasks"
+  get "/judge/:id/t/:serial" => "judge#task"
+  get "/judge/:id/submit" => "judge#submit"
+  get "/judge/:id/submittion" => "judge#submittion"
+  get "/judge/:id/my" => "judge#my"
+  get "/judge/:id/detail/:result_id" => "judge#detail"
+  get "/judge/:id/ranking" => "judge#ranking"
 
   resource :login
   resource :logout
-  resource :register
+#  resource :register
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

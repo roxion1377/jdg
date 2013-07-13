@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  APP_VER = 'ver 0.20'
   def block_non_user
     if session[:user_id].blank?
       redirect_to '/login'

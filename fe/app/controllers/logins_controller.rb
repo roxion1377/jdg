@@ -8,6 +8,7 @@ class LoginsController < ApplicationController
     user = User.find_by_name params[:name]
     if user && user.authenticate(params[:pass])
       session[:user_id] = user.id
+      session[:ver] = APP_VER
       redirect_to "/judge"
     else
       flash.now.alert = "naidesu"
@@ -17,6 +18,7 @@ class LoginsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
+    session[:ver] = nil
     @current_user = nil
     redirect_to "/judge"
   end

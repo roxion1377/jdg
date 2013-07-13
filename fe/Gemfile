@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.13'
+gem 'rails', '4.0.0'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -36,6 +36,10 @@ gem 'bcrypt-ruby' , '~> 3.0.0'
 
 # To use debugger
 # gem 'debugger'
-#gem 'therubyracer'
+gem 'therubyracer'
 gem 'daemons'
 gem 'unicorn'
+gem 'rails_config'
+gem 'rack', '1.5.2'
+gem 'protected_attributes'
+gem 'devise', '3.0.0.rc'
