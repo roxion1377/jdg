@@ -50,6 +50,10 @@
         <li><p class="err">ログインしないとほとんどの機能が使えません</p></li>
 	  </ul>
       <% end %>
+      <ul class="nav nav-list">
+        <li class="nav-header">Version</li>
+        <li><%= Settings.version %></li>     
+      </ul>
     </div>
     <div class="span9">
       <%= yield %>

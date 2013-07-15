@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
       end
     end
   end 
+  before_filter :check_ver
   def block_non_user
     if session[:user_id].blank?
       redirect_to '/login'
