@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+  before_filter :block_non_user, :only => [:new,:create,:update,:destroy]
   # GET /tasks
   # GET /tasks.json
   def index
