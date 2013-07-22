@@ -20,7 +20,8 @@ class ApplicationController < ActionController::Base
     contest = Contest.find(contest_id)
     t = Time.now
     p t,contest.begin,contest.end
-    if t>=contest.begin && t<=contest.end
+#    if ( t>=contest.begin && t<=contest.end ) || session[:admin]
+    if ( t>=contest.begin ) || session[:admin]
       true
     else
       render :text => "jikan gai"

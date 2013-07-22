@@ -3,17 +3,18 @@ require 'drb/drb'
 class ContestsController < ApplicationController
   # GET /contests/1/ranking.json
   def ranking
-	@results = Result.select("contest_id,user_id").where(:contest_id=>params[:id]).uniq(:user_id)
+        @cont = Contest.find(params[:id])
+	@results = Result.select("contest_id,user_id").where(:contest_id=>params[:id]).where(["created_at >= ? AND created_at <= ?",@cont.begin,@cont.end]).uniq(:user_id)
 	us = Struct.new("Us",:user_id,:user_name,:score,:scores,:state,:wa,:wrong_num,:last)
 	u = []
 	used = {}
 	@results.each { |a|
-		u << us.new(a.user_id,User.select("id,name").find(a.user_id).name,0,{},{},{},Result.select("contest_id,state_id").where(["contest_id=? and state_id>=4 and state_id<=7 and user_id=?",params[:id],a.user_id]).count,Result.select("contest_id,created_at").where(:user_id=>a.user_id).maximum(:created_at))
+		u << us.new(a.user_id,User.select("id,name").find(a.user_id).name,0,{},{},{},Result.select("contest_id,state_id").where(["contest_id=? and state_id>=4 and state_id<=7 and user_id=?",params[:id],a.user_id]).where(["created_at >= ? AND created_at <= ?",@cont.begin,@cont.end]).count,Result.select("contest_id,created_at").where(:user_id=>a.user_id).where(["created_at >= ? AND created_at <= ?",@cont.begin,@cont.end]).maximum(:created_at))
 	}
 	@cts = ContestTask.where(:contest_id=>params[:id]).order(:serial)
 	@cts.each { |a|
 		u.each { |v|
-			r = Result.where(:user_id=>v.user_id,:contest_task_id=>a.id,:contest_id=>params[:id]).uniq(:user_id).order(:score).reverse_order.first
+			r = Result.where(:user_id=>v.user_id,:contest_task_id=>a.id,:contest_id=>params[:id]).uniq(:user_id).order(:score).where(["created_at >= ? AND created_at <= ?",@cont.begin,@cont.end]).reverse_order.first
 			ms = r ? r.score : 0
 			v.score += ms
 			v.scores[a.serial] = ms
@@ -51,6 +52,22 @@ class ContestsController < ApplicationController
 		}
 	end
   end
+
+  def score
+    ct = ContestTask.where(:contest_id=>params[:id])
+    ret = {}
+    ct.each{|c|
+      t = Task.find(c.task_id)
+      i = Input.where(:task_id=>t).sum(:score)
+      ret[c.serial] = i
+    }
+    respond_to do |format|
+      format.json { render json: ret }
+      format.xml  { render xml: ret }
+    end
+  end
+
+
   # GET /contests
   # GET /contests.json
   def index
@@ -132,7 +149,7 @@ class ContestsController < ApplicationController
   end
 
   def submit
-    if !block_non_user || !block_time(params[:id])
+    if !session[:admin] && (!block_non_user || !block_time(params[:id]))
     else
       if request.post? && params[:task] && params[:lang] && params[:code]
         contest_id = params[:id]

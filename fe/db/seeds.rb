@@ -17,6 +17,8 @@ State.create!(:state_name=>"WrongAnswer")
 State.create!(:state_name=>"Accepted")
 State.create!(:state_name=>"Waiting")
 
+User.delete_all
+
 f = open("db/users.txt")
 while l = f.gets
   name,pass = l.split(" ")

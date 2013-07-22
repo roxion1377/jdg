@@ -33,7 +33,7 @@ class ContestTasksController < ApplicationController
   end
 
   def task
-    if contest_not_begin params[:id]
+    if (contest_not_begin params[:id]) && !session[:admin]
       render :json => []
       return
     end
@@ -41,6 +41,20 @@ class ContestTasksController < ApplicationController
       .where(contest_id:params[:id],serial:params[:serial])
       .joins(:task).first
     render :json => @task
+  end
+
+  def score
+    ct = ContestTask.where(params[:id])
+    ret = {}
+    ct.each{|c|
+      t = Task.find(c.task_id)
+      i = Input.where(:task_id=>t).sum(:score)
+      ret[c.serial] = i
+    }
+    respond_to do |format|
+      format.json { render json: ret }
+      format.xml  { render xml: ret }
+    end
   end
 
   # GET /contest_tasks/new

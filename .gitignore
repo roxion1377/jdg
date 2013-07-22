@@ -8,8 +8,9 @@
 *.pid
 
 /fe/*.lock
-
+/fe/public/*
 /fe/db/*.sqlite3
+/fe/db/users.txt
 /fe/tmp/*
 /fe/log/*
 /fe/task_data/contests/*

@@ -16,6 +16,11 @@ class JudgeController < ApplicationController
     @id = params[:id]
     @my = ""
   end
+  def task_submittion
+    @id = params[:id]
+    @my = ""
+    @serial = params[:serial]
+  end
   def my
     @id = params[:id]
     @my = "My"

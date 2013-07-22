@@ -5,6 +5,7 @@
       <th>Name</th>
 	  <th>TLE</th>
 	  <th>MLE</th>
+      <th>Score</th>
     </tr>
   </thead>
   <tbody id="tasks">
@@ -15,9 +16,11 @@
 id = <%= @id %>;
 function update() {
   tasks = getTasks(id);
+  scores = getScores(id);
   for( var i in tasks ) {
     task = tasks[i];
-    $('#tasks').append(tag('tr',tag('td',task.serial)+tag('td','<a href="/judge/'+id+'/t/'+task.serial+'">'+task.name+'</a>')+tag('td',task.tle+' s')+tag('td',task.mle+' MB')));
+    score = scores[task.serial];
+    $('#tasks').append(tag('tr',tag('td',task.serial)+tag('td','<a href="/judge/'+id+'/t/'+task.serial+'">'+task.name+'</a>')+tag('td',task.tle+' s')+tag('td',task.mle+' MB')+tag('td',score+'pt')));
   }
 }
 $('document').ready(function(){

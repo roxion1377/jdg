@@ -9,6 +9,7 @@ class LoginsController < ApplicationController
     if user && user.authenticate(params[:pass])
       session[:user_id] = user.id
       session[:ver] = Settings.version
+      session[:admin] = (['mozuki'].include? params[:name] )? true : nil
       redirect_to "/judge"
     else
       flash.now.alert = "naidesu"
@@ -19,6 +20,7 @@ class LoginsController < ApplicationController
   def destroy
     session[:user_id] = nil
     session[:ver] = nil
+    session[:admin] = nil
     @current_user = nil
     redirect_to "/judge"
   end

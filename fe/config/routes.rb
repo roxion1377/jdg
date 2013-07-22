@@ -12,9 +12,12 @@ Judge::Application.routes.draw do
   resources :contests
 
   get "/results/:id/my.json" => "results#my"
+  get "/results/:id/t/:serial" => "results#show_task"
 
-  get "/contest/:id/submit" => "contests#submit"
+  post "/contest/:id/submit" => "contests#submit"
   get "/contests/:id/ranking" => "contests#ranking"
+
+  get "/contests/:id/score" => "contests#score"
 
   get "contest_tasks/:id/:serial" => "contest_tasks#task"
 
@@ -23,6 +26,7 @@ Judge::Application.routes.draw do
   get "/judge/:id/t/:serial" => "judge#task"
   get "/judge/:id/submit" => "judge#submit"
   get "/judge/:id/submittion" => "judge#submittion"
+  get "/judge/:id/submittion/t/:serial" => "judge#task_submittion"
   get "/judge/:id/my" => "judge#my"
   get "/judge/:id/detail/:result_id" => "judge#detail"
   get "/judge/:id/ranking" => "judge#ranking"

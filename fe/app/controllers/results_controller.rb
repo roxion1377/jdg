@@ -14,8 +14,10 @@ class ResultsController < ApplicationController
   # GET /results/1.json
   NUM = 30
   def show
+    cont = Contest.find(params[:id])
     @result = Result
       .select("Results.id,state_id,Results.contest_id,lang_id,contest_task_id,score,Results.created_at,state_name,Tasks.name as task_name,task_id,user_id,Users.name as user_name,serial")
+      .where(["Results.created_at >= ?",cont.begin])
       .where(:contest_id=>params[:id])
       .joins(:state)
       .joins(:contest_task => :task)
@@ -31,6 +33,31 @@ class ResultsController < ApplicationController
       format.html # show.html.erb
       format.json { render json: @result }
     end
+  end
+
+  def show_task
+    cont = Contest.find(params[:id])
+    serial = params[:serial]
+    @result = Result
+      .select("Results.id,state_id,Results.contest_id,lang_id,contest_task_id,score,Results.created_at,state_name,Tasks.name as task_name,task_id,user_id,Users.name as user_name,serial")
+      .where(["Results.created_at >= ?",cont.begin])
+      .where(:contest_id=>params[:id])
+      .joins(:state)
+      .joins(:contest_task => :task)
+      .where(:contest_task_id => ContestTask.where(:contest_id=>cont.id,:serial=>serial).first.id)
+      .joins(:user)
+      .order("Results.id DESC")
+#      .joins(:state)
+#      .joins(:contest_task => :task)
+#      .joins(:user)
+#      .offset(params[:offset].to_i*NUM)
+#      .limit(NUM)
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @result }
+    end
+
   end
 
   def my

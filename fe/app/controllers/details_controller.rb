@@ -22,7 +22,7 @@ class DetailsController < ApplicationController
       .joins(:user)
       .find(@result_id)
 #contest_not_end ? .where(:user_id=>session[:user_id]) : .all
-    if !contest_end(@result.contest_id) && @result.user_id!=session[:user_id]
+    if !contest_end(@result.contest_id) && @result.user_id!=session[:user_id] && !session[:admin]
       render json: {}
       return
     end

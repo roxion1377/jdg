@@ -25,6 +25,21 @@ function getSubmittion(id,offset)
     return ret;
 }
 
+function getTaskSubmittion(id,serial,offset)
+{
+          $.ajax({
+                    type:"GET",
+                    url:"/results/"+id+"/t/"+serial+".json",
+                    async:false,
+        data:{'offset':offset},
+                    success: function(data) {
+                              ret = data;
+                    }
+          });
+    return ret;
+}
+
+
 function getMySubmittion(id,offset)
 {
           $.ajax({
@@ -52,3 +67,16 @@ function getRanking(id)
 	});
 	return ret;
 }
+function getScores(id)
+{
+        $.ajax({
+                type:"GET",
+                url:"/contests/"+id+"/score.json",
+                async:false,
+                success: function(data) {
+                        ret = data;
+                }
+        });
+        return ret;
+}
+
